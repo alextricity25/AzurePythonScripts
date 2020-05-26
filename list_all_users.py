@@ -8,11 +8,12 @@ Description:
 """
 # Imports
 from make_request import paginate
+from test_cases import TestCases
 
 # Variables
 # This query fetches all of the users along with the attributes defined
 # in the select filter
-GRAPH_ENDPOINT = (
+GRAPH_USERS_URI = (
         "https://graph.microsoft.com/v1.0"
         "/users"
         "?$select="
@@ -30,13 +31,15 @@ GRAPH_ENDPOINT = (
         "usageLocation,"
         "userPrincipalName,")
 
-def list_all_users(config, app):
+def list_all_users(config, app, parsed_args):
     user_data = []
-    paginate(GRAPH_ENDPOINT,
+    paginate(GRAPH_USERS_URI,
              user_data,
              'value',
              config,
-             app)
+             app,
+             parsed_args,
+             test_data=TestCases().get_test_user_graph_data())
     
     # Converting data to dictionary indexed by UPN
     users = {}

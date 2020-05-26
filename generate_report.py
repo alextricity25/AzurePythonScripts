@@ -60,4 +60,5 @@ app = msal.ConfidentialClientApplication(
 
 # The meat of the program
 #users_with_registration_details = list_credential_user_registration_details(config, app)
-users_with_attributes = list_all_users(config, app)
+users_with_attributes = list_all_users(config, app, parsed_args)
+print(users_with_attributes)

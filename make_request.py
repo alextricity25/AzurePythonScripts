@@ -19,6 +19,7 @@ def paginate(endpoint,
              key,
              config,
              app,
+             parsed_args,
              transformer=None,
              test_data=None,
              std_output=True,
@@ -29,9 +30,8 @@ def paginate(endpoint,
     TODO:
     Document parameters
     """
-
     # If test_data is provided, then do not make the API call
-    if test_data:
+    if test_data and parsed_args.smoke:
         graph_data = test_data
     else:
         # If test_data is not given, assume normal operation and make
@@ -84,6 +84,7 @@ def paginate(endpoint,
                    key,
                    config,
                    app,
+                   parsed_args,
                    transformer=transformer,
                    test_data=test_data,
                    std_output=std_output,
